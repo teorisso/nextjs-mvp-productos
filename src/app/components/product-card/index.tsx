@@ -1,18 +1,22 @@
 'use client';
-import { useRouter } from 'next/navigation';
 
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 interface ProductCardProps {
     id: number;
     name: string;
-    description: string;
     price: number;
 }
 
-export default function ProductCard({products}: {products: ProductCardProps[]}) {
+
+export default function ProductCard({products,}: {products: ProductCardProps[];}) {
     const router = useRouter();
+
+    const [state, setState] = useState();
+
     return (
         <div className='relative'>
-        <div className="flex flex/wrap gap-4 mt-20">
+        <div className="flex flex-wrap gap-4 mt-20">
           {products.slice(0,5).map((product) => (
             <div 
             key={product.id} 
@@ -23,7 +27,6 @@ export default function ProductCard({products}: {products: ProductCardProps[]}) 
                 className="text-2xl text-gray-100">
                 {product.name}
                 </h2>
-                <p className="text-1xl text-gray-100">{product.description}</p>
                 <p className="text-green-600 text-xl">${product.price}</p> 
             </div>
             ))}
@@ -34,7 +37,6 @@ export default function ProductCard({products}: {products: ProductCardProps[]}) 
         <button className='text-4xl font font-semibold absolute top-[56%] -left-14 hover:text-gray-600'>
             {'<'}
         </button>
-
         </div>
     );
 }
