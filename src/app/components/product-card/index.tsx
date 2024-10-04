@@ -15,7 +15,8 @@ export default function ProductCard({products,}: {products: ProductCardProps[];}
     const [currentIndex, setCurrentIndex] = useState(0);
 
     function handleNext() {
-        setCurrentIndex(currentIndex + 1);
+        const isLast = currentIndex  === products.length -1;
+        setCurrentIndex(isLast ? 0 : currentIndex + 1);
     }
 
     function handlePrev() {
@@ -43,13 +44,13 @@ export default function ProductCard({products,}: {products: ProductCardProps[];}
             </div>
             ))}
         </div>
-        <button className='text-4xl font font-semibold absolute top-[56%] -right-14 hover:text-gray-600' 
+        <button className="text-4xl font font-semibold absolute top-[56%] -right-14 hover:text-gray-600 disabled:hidden" 
         onClick={()=>handleNext()}
         disabled={nextDisabled}
         >
             {'>'}
         </button>
-        <button className='text-4xl font font-semibold absolute top-[56%] -left-14 hover:text-gray-600'
+        <button className="text-4xl font font-semibold absolute top-[56%] -left-14 hover:text-gray-600 disabled:hidden"
          onClick={()=>handlePrev()}
          disabled={prevDisabled}
          >
